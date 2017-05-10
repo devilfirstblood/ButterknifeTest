@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "24.0.1"
+    defaultConfig {
+        applicationId "com.kugou.butterknifetest"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        jackOptions {
+//            enabled true
+//        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_7
+//        targetCompatibility JavaVersion.VERSION_1_7
+//    }
+}
+
+dependencies {
+    compile 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    testCompile 'junit:junit:4.12'
+    compile project(':mybind')
+//    apt project(':myprocessor')
+    annotationProcessor project(':myprocessor')
+
+//    compile 'com.google.dagger:dagger:2.0'
+//    annotationProcessor 'com.google.dagger:dagger-compiler:2.0'
+}
+
+//apt {
+//    processor "com.chen.processor.MyProcessor"
+//    // 仅运行上面的声名的处理器类
+//    disableDiscovery true
+//}
+
+//把processor module生成的jar拷贝到app libs目录
+//task processorTask(type: Exec) {
+//    commandLine 'cp', '../myprocessor/build/libs/myprocessor.jar', 'libs/'
+//}
+////build processor 生成processor.jar
+//processorTask.dependsOn(':myprocessor:build')
+//preBuild.dependsOn(processorTask)

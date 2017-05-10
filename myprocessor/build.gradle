@@ -1,0 +1,13 @@
+apply plugin: 'java'
+
+dependencies {
+    compile 'com.google.auto.service:auto-service:1.0-rc2'
+//    compile 'com.google.auto:auto-common:0.6'
+    compile 'com.squareup:javapoet:1.7.0'
+    compile project(':annotation')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+//    compileOnly files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
